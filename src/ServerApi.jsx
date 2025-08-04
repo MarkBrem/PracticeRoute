@@ -14,7 +14,7 @@ export async function fetchCharacters() {
 
 export async function fetchMovies() {
   try {
-    const response = await fetch('https://api.potterdb.com/v1/movies');
+    const response = await fetch('https://api.potterdb.com/v1/spells');
     if (!response.ok) {
       throw new Error(`HTTP error! Статус: ${response.status}`);
     }
@@ -22,9 +22,10 @@ export async function fetchMovies() {
 
     return data.data.map(movie => ({
       id: movie.id,
-      title: movie.attributes.title || 'Невідома назва',
-      releaseDate: movie.attributes.release_date || 'Невідома дата',
-      summary: movie.attributes.summary || 'Немає опису'
+      name: movie.attributes.name || 'Невідома назва',
+      category: movie.attributes.category
+      // releaseDate: movie.attributes.release_date || 'Невідома дата',
+      // summary: movie.attributes.summary || 'Немає опису'
     }));
   } catch (error) {
     console.error('Помилка при запиті фільмів:', error);
@@ -34,22 +35,24 @@ export async function fetchMovies() {
 
 export async function fetchMovieById({ params }) {
   try {
-    const response = await fetch(`https://api.potterdb.com/v1/movies/${params.id}`);
+    const response = await fetch(`https://api.potterdb.com/v1/spells/${params.id}`);
     if (!response.ok) {
       throw new Error(`HTTP error! Статус: ${response.status}`);
     }
     const data = await response.json();
     const movie = data.data.attributes;
     return {
-      title: movie.title || 'Невідома назва',
-      releaseDate: movie.release_date || 'Невідома дата',
-      summary: movie.summary || 'Немає опису',
-      boxOffice: movie.box_office || 'Невідомо',
-      directors: movie.directors || [],
-      runningTime: movie.running_time || 'Невідомо',
+      name: movie.name || 'Невідома назва',
+      effect: movie.effect || 'Немає опису',
+      hand: movie.hand || 'Невідомо',
+      category: movie.category || [],
     };
   } catch (error) {
     console.error('Помилка при запиті фільму:', error);
     return null;
   }
 }
+
+export async function fetchForm(){
+
+} 

@@ -18,6 +18,7 @@ export const routing = createBrowserRouter([
       {
         path: "/search",
         element: <SearchPage/>,
+        // loader: 
       },
      { path: "/movies", 
       element: <MoviePage />, 

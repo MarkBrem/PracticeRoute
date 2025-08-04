@@ -1,8 +1,15 @@
-import { Form } from "../Components/Form";
+import { useSearchParams } from "react-router-dom";
 
 export const SearchPage = () => {
-  return (<>
-  <Form/>
+  const [searchParams, setSearchParams] = useSearchParams()
+  console.log(searchParams);
+  return (
+    <>
+    <input onChange={(e)=>{
+      setSearchParams({value: e.target.value})
+    }} value={searchParams.get('value') ?? ''} type="text"/>
+    <button type="submit">Пошук</button>
+    
   </>
   );
 }

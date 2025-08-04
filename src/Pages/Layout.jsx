@@ -12,7 +12,7 @@ export const Layout = () => {
             <NavLink to="/search">Пошук</NavLink>
           </li>
           <li>
-            <NavLink to="/movies">Фільми</NavLink>
+            <NavLink to="/movies">Заклинання</NavLink>
           </li>
         </ul>
       </header>
